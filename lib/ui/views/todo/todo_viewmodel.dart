@@ -12,6 +12,7 @@ class TodoViewModel extends FormViewModel {
   void updateTodos(List<TodoModel> newTodos) {
     todos.clear();
     todos.addAll(newTodos);
+    todos.sort((a, b) => b.isDone ? -1 : 1);
     rebuildUi();
   }
 
