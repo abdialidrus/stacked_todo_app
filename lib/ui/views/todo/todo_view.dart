@@ -61,6 +61,7 @@ class TodoView extends StackedView<TodoViewModel> with $TodoView {
                     onPressed: () {
                       if (validateFormFields(viewModel)) {
                         viewModel.addTodo();
+                        todoTitleInputController.clear();
                       }
                     },
                     child: const Text(
@@ -104,6 +105,14 @@ class TodoView extends StackedView<TodoViewModel> with $TodoView {
                             }
                           },
                         ),
+                        trailing: todo.isDone
+                            ? IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () {
+                                  viewModel.deleteTodo(todo);
+                                },
+                              )
+                            : null,
                       );
                     },
                   ),
