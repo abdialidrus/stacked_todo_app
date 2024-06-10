@@ -39,11 +39,30 @@ class TodoView extends StackedView<TodoViewModel> with $TodoView {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                   ),
                   verticalSpaceSmall,
-                  TextFormField(controller: todoTitleInputController),
+                  TextFormField(
+                    controller: todoTitleInputController,
+                    decoration:
+                        const InputDecoration(hintText: 'Your To Do Title'),
+                  ),
+                  if (viewModel.hasTodoTitleInputValidationMessage) ...[
+                    verticalSpaceTiny,
+                    Text(
+                      viewModel.todoTitleInputValidationMessage!,
+                      style: const TextStyle(
+                        color: Colors.red,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
                   verticalSpaceMedium,
                   MaterialButton(
                     color: Colors.black,
-                    onPressed: viewModel.addTodo,
+                    onPressed: () {
+                      if (validateFormFields(viewModel)) {
+                        viewModel.addTodo();
+                      }
+                    },
                     child: const Text(
                       'Create TODO',
                       style: TextStyle(color: Colors.white),

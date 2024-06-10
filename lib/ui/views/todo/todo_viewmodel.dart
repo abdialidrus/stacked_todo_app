@@ -53,7 +53,7 @@ class TodoViewModel extends FormViewModel {
 
 class TodoTitleValidator {
   static String? validateTodoTitle(String? value) {
-    if (value == null || value.isEmpty) {
+    if (value == null || value.isEmpty || value == '') {
       return 'Todo title is required';
     }
 

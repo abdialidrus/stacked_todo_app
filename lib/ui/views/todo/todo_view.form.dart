@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_todo_app/ui/views/todo/todo_viewmodel.dart';
 
 const bool _autoTextFieldValidation = true;
 
@@ -18,7 +19,7 @@ final Map<String, TextEditingController> _TodoViewTextEditingControllers = {};
 final Map<String, FocusNode> _TodoViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?> _TodoViewTextValidations = {
-  TodoTitleInputValueKey: null,
+  TodoTitleInputValueKey: TodoTitleValidator.validateTodoTitle,
 };
 
 mixin $TodoView {
