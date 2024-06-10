@@ -87,7 +87,23 @@ class TodoView extends StackedView<TodoViewModel> with $TodoView {
                       final todo = viewModel.todos[index];
                       return ListTile(
                         onTap: () {},
-                        title: Text(todo.title),
+                        title: Text(
+                          todo.title,
+                          style: TextStyle(
+                            decoration:
+                                todo.isDone ? TextDecoration.lineThrough : null,
+                          ),
+                        ),
+                        leading: Checkbox(
+                          value: todo.isDone,
+                          onChanged: (value) {
+                            if (value!) {
+                              viewModel.markToDoAsDone(todo);
+                            } else {
+                              viewModel.markToDoAsUnDone(todo);
+                            }
+                          },
+                        ),
                       );
                     },
                   ),
